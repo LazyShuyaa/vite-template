@@ -12,7 +12,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/use-theme";
 
 export const Navbar = () => {
   const customNavMenuItems: { label: string; href: string }[] = [
