@@ -43,7 +43,7 @@ export const Navbar = () => {
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 href={item.href}
-                onClick={() => {
+                onClick={(event) => {
                   document.querySelectorAll("a").forEach((link) => {
                     link.classList.remove("active");
                   });
@@ -72,7 +72,7 @@ export const Navbar = () => {
               <Link
                 href={item.href}
                 size="lg"
-                onClick={() => {
+                onClick={(event) => {
                   document.querySelectorAll("a").forEach((link) => {
                     link.classList.remove("active");
                   });
