@@ -12,6 +12,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
+import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   const customNavMenuItems: { label: string; href: string }[] = [
@@ -21,6 +22,20 @@ export const Navbar = () => {
     { label: "Contact", href: "/contact" },
     { label: "Project", href: "/project" },
   ];
+
+  const [activeLink, setActiveLink] = useState("");
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      setIsDarkTheme(true);
+    }
+  }, []);
+
+  const handleLinkClick = (href: string) => {
+    setActiveLink(href);
+  };
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
@@ -40,15 +55,11 @@ export const Navbar = () => {
               <Link
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  activeLink === item.href ? (isDarkTheme ? "bg-white text-black" : "bg-black text-white") : "text-white",
+                  "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
                 href={item.href}
-                onClick={(event) => {
-                  document.querySelectorAll("a").forEach((link) => {
-                    link.classList.remove("active");
-                  });
-                  event.currentTarget.classList.add("active");
-                }}
+                onClick={() => handleLinkClick(item.href)}
               >
                 {item.label}
               </Link>
@@ -70,14 +81,13 @@ export const Navbar = () => {
           {customNavMenuItems.map((item) => (
             <NavbarMenuItem key={item.href}>
               <Link
+                className={clsx(
+                  activeLink === item.href ? (isDarkTheme ? "bg-white text-black" : "bg-black text-white") : "text-white",
+                  "rounded-full px-2 py-1 transition-colors duration-300"
+                )}
                 href={item.href}
                 size="lg"
-                onClick={(event) => {
-                  document.querySelectorAll("a").forEach((link) => {
-                    link.classList.remove("active");
-                  });
-                  event.currentTarget.classList.add("active");
-                }}
+                onClick={() => handleLinkClick(item.href)}
               >
                 {item.label}
               </Link>
