@@ -11,11 +11,17 @@ import {
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
-import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Features", href: "/features" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "About", href: "/about" },
+  ];
+
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -29,8 +35,8 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">ACME</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden md:flex gap-4 justify-end ml-auto">
-          {siteConfig.navItems.map((item) => (
+        <div className="hidden lg:flex gap-4 justify-end ml-auto">
+          {navItems.map((item) => (
             <NavbarItem key={item.href}>
               <Link
                 className={clsx(
@@ -44,6 +50,9 @@ export const Navbar = () => {
               </Link>
             </NavbarItem>
           ))}
+          <NavbarItem>
+            <ThemeSwitch />
+          </NavbarItem>
         </div>
       </NavbarContent>
 
@@ -54,17 +63,17 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
+          {navItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   index === 2
                     ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
+                    : index === navItems.length - 1
                     ? "danger"
                     : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}
