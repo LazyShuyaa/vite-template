@@ -12,7 +12,6 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
   const customNavMenuItems: { label: string; href: string }[] = [
@@ -21,7 +20,6 @@ export const Navbar = () => {
     { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
     { label: "Project", href: "/project" },
-    
   ];
 
   return (
@@ -33,8 +31,7 @@ export const Navbar = () => {
             color="foreground"
             href="/"
           >
-            <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">Rugi Empower</p>
           </Link>
         </NavbarBrand>
         <div className="hidden md:flex gap-4 justify-center flex-grow">
@@ -45,8 +42,13 @@ export const Navbar = () => {
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
-                color="foreground"
                 href={item.href}
+                onClick={() => {
+                  document.querySelectorAll("a").forEach((link) => {
+                    link.classList.remove("active");
+                  });
+                  event.currentTarget.classList.add("active");
+                }}
               >
                 {item.label}
               </Link>
@@ -66,17 +68,16 @@ export const Navbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {customNavMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+            <NavbarMenuItem key={item.href}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === customNavMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
                 href={item.href}
                 size="lg"
+                onClick={() => {
+                  document.querySelectorAll("a").forEach((link) => {
+                    link.classList.remove("active");
+                  });
+                  event.currentTarget.classList.add("active");
+                }}
               >
                 {item.label}
               </Link>
