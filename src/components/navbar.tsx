@@ -29,7 +29,7 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">ACME</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-end ml-auto">
+        <div className="hidden md:flex gap-4 justify-end ml-auto">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <Link
@@ -47,7 +47,7 @@ export const Navbar = () => {
         </div>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="md:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
