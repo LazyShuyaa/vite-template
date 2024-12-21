@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/link";
+import { Link, useLocation } from "react-router-dom";
 import {
   Navbar as NextUINavbar,
   NavbarBrand,
@@ -12,7 +12,6 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { useRouter } from "next/router";
 import { useTheme } from "@/hooks/useTheme";
 
 export const Navbar = () => {
@@ -24,7 +23,7 @@ export const Navbar = () => {
     { label: "Project", href: "/project" },
   ];
 
-  const router = useRouter();
+  const location = useLocation();
   const { isDark } = useTheme();
 
   return (
@@ -33,10 +32,9 @@ export const Navbar = () => {
         <NavbarBrand className="gap-3 max-w-fit">
           <Link
             className="flex justify-start items-center gap-1"
-            color="foreground"
-            href="/"
+            to="/"
           >
-            <p className="font-bold text-inherit">Rugi Empire</p>
+            <p className="font-bold text-inherit">Rugi Empower</p>
           </Link>
         </NavbarBrand>
         <div className="hidden md:flex gap-4 justify-center flex-grow">
@@ -45,14 +43,14 @@ export const Navbar = () => {
               <Link
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  router.pathname === item.href
+                  location.pathname === item.href
                     ? isDark
                       ? "bg-white text-black"
                       : "bg-black text-white"
                     : "text-white",
                   "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
-                href={item.href}
+                to={item.href}
               >
                 {item.label}
               </Link>
@@ -75,14 +73,14 @@ export const Navbar = () => {
             <NavbarMenuItem key={item.href}>
               <Link
                 className={clsx(
-                  router.pathname === item.href
+                  location.pathname === item.href
                     ? isDark
                       ? "bg-white text-black"
                       : "bg-black text-white"
                     : "text-white",
                   "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
-                href={item.href}
+                to={item.href}
                 size="lg"
               >
                 {item.label}
