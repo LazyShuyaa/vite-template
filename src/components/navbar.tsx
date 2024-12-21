@@ -15,11 +15,11 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
-  const navItems = [
+  const customNavMenuItems: { label: string; href: string }[] = [
     { label: "Home", href: "/" },
-    { label: "Features", href: "/features" },
-    { label: "Pricing", href: "/pricing" },
     { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -35,8 +35,8 @@ export const Navbar = () => {
             <p className="font-bold text-inherit">ACME</p>
           </Link>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-end ml-auto">
-          {navItems.map((item) => (
+        <div className="hidden md:flex gap-4 justify-center flex-grow">
+          {customNavMenuItems.map((item) => (
             <NavbarItem key={item.href}>
               <Link
                 className={clsx(
@@ -50,9 +50,9 @@ export const Navbar = () => {
               </Link>
             </NavbarItem>
           ))}
-          <NavbarItem>
-            <ThemeSwitch />
-          </NavbarItem>
+        </div>
+        <div className="hidden md:flex justify-end ml-auto">
+          <ThemeSwitch />
         </div>
       </NavbarContent>
 
@@ -63,13 +63,13 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {navItems.map((item, index) => (
+          {customNavMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   index === 2
                     ? "primary"
-                    : index === navItems.length - 1
+                    : index === customNavMenuItems.length - 1
                     ? "danger"
                     : "foreground"
                 }
