@@ -67,7 +67,7 @@ export const Navbar = () => {
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {customNavMenuItems.map((item, index) => (
+          {customNavMenuItems.map((item) => (
             <NavbarMenuItem key={item.href}>
               <Link
                 href={item.href}
