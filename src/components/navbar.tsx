@@ -81,7 +81,6 @@ export const Navbar = () => {
                   "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
                 to={item.href}
-                size="lg"
               >
                 {item.label}
               </Link>
