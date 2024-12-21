@@ -12,7 +12,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
-import { useTheme } from "@/hooks/use-theme";
+import { useTheme } from "@/hooks/useTheme";
 
 export const Navbar = () => {
   const customNavMenuItems: { label: string; href: string }[] = [
@@ -47,7 +47,9 @@ export const Navbar = () => {
                     ? isDark
                       ? "bg-white text-black"
                       : "bg-black text-white"
-                    : "text-white",
+                    : isDark
+                    ? "text-white"
+                    : "text-black",
                   "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
                 to={item.href}
@@ -77,7 +79,9 @@ export const Navbar = () => {
                     ? isDark
                       ? "bg-white text-black"
                       : "bg-black text-white"
-                    : "text-white",
+                    : isDark
+                    ? "text-white"
+                    : "text-black",
                   "rounded-full px-2 py-1 transition-colors duration-300"
                 )}
                 to={item.href}
